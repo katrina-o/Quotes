@@ -21,6 +21,14 @@ class QuotesCell: UITableViewCell {
         return label
     }()
     
+    let authorLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .darkGray
+        label.font = UIFont.systemFont(ofSize: 20)
+        label.textAlignment = .right
+        return label
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
