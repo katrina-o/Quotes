@@ -7,10 +7,10 @@
 
 import Foundation
 
-struct QuotesModel: Decodable {
+struct QuotesModel: Codable {
     var quotes: [QuotesData]
 }
-struct QuotesData: Decodable {
+struct QuotesData: Codable {
     var quote: String
     var author: String
     var category: String

@@ -13,6 +13,7 @@ class ViewController: UIViewController,UISearchBarDelegate, UITableViewDelegate,
     var quotesManager = QuotesManager()
     var quotesCell = QuotesCell()
     var quotes: [QuotesData]?
+    let categoryArray = ["happiness", "age", "alone", "dreams", "food"]
     
     let searchBar: UISearchBar = {
         let searchBar = UISearchBar()
@@ -42,14 +43,12 @@ class ViewController: UIViewController,UISearchBarDelegate, UITableViewDelegate,
     }
 
     func createTable() {
-//        self.quotesTableView = UITableView(frame: view.bounds, style: .plain)
         self.quotesTableView.register(QuotesCell.self, forCellReuseIdentifier: QuotesCell.identifire)
         quotesTableView.delegate = self
         quotesTableView.dataSource = self
-
     }
     func initialize() {
-        view.backgroundColor = .darkGray
+        view.backgroundColor = .systemBackground
         view.addSubview(searchBar)
         view.addSubview(quotesTableView)
         
@@ -74,21 +73,22 @@ class ViewController: UIViewController,UISearchBarDelegate, UITableViewDelegate,
         }
     //MARK: UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        quotes?.count ?? 0
+
+        return quotes?.count ?? 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: QuotesCell.identifire, for: indexPath) as? QuotesCell else {
             fatalError("Fatal error")
         }
-        let indexpathQuotes = quotes?[indexPath.row].category ?? ""
+        let indexpathQuotes = quotes?[indexPath.row].quote ?? ""
         cell.configure(quotesLabel: indexpathQuotes)
         
         return cell
     }
     //MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        80.00
+        return/* UITableView.automaticDimension*/ 200
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let secondVC = ResultViewController()

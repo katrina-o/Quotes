@@ -17,6 +17,7 @@ class QuotesCell: UITableViewCell {
         label.textColor = .black
         label.font = UIFont.systemFont(ofSize: 20)
         label.textAlignment = .center
+        label.numberOfLines = 5
         return label
     }()
     
@@ -37,7 +38,9 @@ class QuotesCell: UITableViewCell {
         self.contentView.addSubview(quotesLabel)
         
         quotesLabel.snp.makeConstraints { make in
-            make.center.equalTo(contentView)
-        }    
+            make.leading.equalToSuperview().inset(10)
+            make.trailing.equalToSuperview().inset(10)
+            make.center.equalToSuperview()
+        }
     }
 }
